@@ -1,0 +1,15 @@
+location: Singapore
+site: HQ1
+topology: dst_access_l2
+offline: false
+topology_nodes:
+  dst:
+    - mgmt_ip: 10.1.1.20
+      device: vios_l2
+    - mgmt_ip: 10.1.1.21
+      device: vios_l2
+  access:
+    - mgmt_ip: 10.1.1.22
+      device: vios_l2
+    - mgmt_ip: 10.1.1.23
+      device: vios_l2

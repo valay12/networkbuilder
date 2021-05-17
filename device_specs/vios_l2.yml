@@ -1,0 +1,15 @@
+platform: ios
+management_interface: GigabitEthernet0/0
+peer:
+  - GigabitEthernet0/1
+  - GigabitEthernet0/2
+downlinks:
+  - GigabitEthernet1/0
+  - GigabitEthernet1/1
+  - GigabitEthernet1/2
+  - GigabitEthernet1/3
+uplinks:
+  - GigabitEthernet0/1
+  - GigabitEthernet0/2
+  - GigabitEthernet1/0
+  - GigabitEthernet1/1

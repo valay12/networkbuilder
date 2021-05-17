@@ -1,0 +1,40 @@
+vlan 100-999
+!
+{% if role == 'DSTA' %}
+spanning-tree vlan 100-999 root primary
+{% elif role == 'DSTB' %}
+spanning-tree vlan 100-999 root secondary
+{% endif %}
+!
+{% for interface in topology_connections.peer %}
+interface {{ interface }}
+  description TO_{{ interface }}_{{ peer }}
+  channel-group 1 mode active
+  no shut
+!
+{% endfor %}
+interface Port-channel1
+  description TO_PO1_{{ peer }}
+  switchport mode trunk
+  switchport trunk allowed vlan 100-999
+!
+{% for i in range(downlink_switches) %}
+interface {{ topology_connections.downlinks[2*i] }}
+  switchport mode trunk
+  switchport trunk allowed vlan 100-999
+  channel-group {{ 10+i }} mode active
+  no shut
+!
+interface {{ topology_connections.downlinks[2*i+1] }}
+  switchport mode trunk
+  switchport trunk allowed vlan 100-999
+  channel-group {{ 10+i }} mode active
+  no shut
+!
+interface Port-channel{{ 10+i }}
+  description TO_PO{{ 10+i }}_{{ downlinks[i] }}
+  switchport mode trunk
+  switchport trunk allowed vlan 100-999
+  no shut
+!
+{% endfor %}

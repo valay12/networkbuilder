@@ -1,0 +1,7 @@
+{% include 'base.j2' %}
+
+{% if 'DST' in role %}
+{% include 'dst.j2' %}
+{% elif 'ACC' in role %}
+{% include 'access.j2' %}
+{% endif %}

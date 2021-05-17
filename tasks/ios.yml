@@ -1,0 +1,13 @@
+---
+#- ios_facts:
+#    gather_subset: min
+- name: "[ios.yml] Configure as per template"
+  ios_config:
+    src: "{{ playbook_dir }}/templates/ios/template.j2"
+    backup: true
+  when: not offline
+- template:
+    src: "{{ playbook_dir }}/templates/ios/template.j2"
+    dest: "{{ playbook_dir }}/output/{{ hostname }}.cfg"
+  delegate_to: localhost
+...

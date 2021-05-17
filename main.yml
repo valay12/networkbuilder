@@ -1,0 +1,10 @@
+---
+- name: PLAY1
+  hosts: topology
+  vars:
+    ansible_user: admin
+    ansible_password: admin
+  tasks:
+    - include_tasks: "{{ playbook_dir }}/tasks/{{ ansible_network_os }}.yml" 
+      tags: []
+...
